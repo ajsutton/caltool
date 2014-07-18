@@ -31,6 +31,8 @@
 		2117F57C197638990025E559 /* EventRetriever.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRetriever.swift; sourceTree = "<group>"; };
 		2117F57E1979CCA90025E559 /* JsonOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonOutput.swift; sourceTree = "<group>"; };
 		2117F5801979CCDC0025E559 /* OutputFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputFormat.swift; sourceTree = "<group>"; };
+		21A280641979D6F4004B4E82 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
+		21A280651979D6F4004B4E82 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,8 @@
 			isa = PBXGroup;
 			children = (
 				2117F5751976213D0025E559 /* main.swift */,
+				21A280641979D6F4004B4E82 /* LICENSE */,
+				21A280651979D6F4004B4E82 /* README.md */,
 				2117F57E1979CCA90025E559 /* JsonOutput.swift */,
 				2117F5801979CCDC0025E559 /* OutputFormat.swift */,
 				2117F57C197638990025E559 /* EventRetriever.swift */,
@@ -245,6 +249,7 @@
 				2117F57B1976213D0025E559 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
