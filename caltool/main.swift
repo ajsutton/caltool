@@ -23,11 +23,10 @@ func printError(message : String) {
     stderr.writeData("\(message)\n".dataUsingEncoding(NSUTF8StringEncoding))
 }
 var fetching = true
-
-var startDate = NSDate()
-var endDate = NSDate()
+let dateHelper = DateHelper()
+var startDate = dateHelper.startOfCurrentDay
+var endDate = dateHelper.endOfCurrentDay
 var errorMessages = Array<String>()
-
 let parser = JVArgumentParser()
 
 var error : NSError?
