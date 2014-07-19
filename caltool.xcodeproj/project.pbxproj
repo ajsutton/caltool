@@ -11,6 +11,7 @@
 		2117F57D197638990025E559 /* EventRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F57C197638990025E559 /* EventRetriever.swift */; };
 		2117F57F1979CCA90025E559 /* JsonOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F57E1979CCA90025E559 /* JsonOutput.swift */; };
 		2117F5811979CCDC0025E559 /* OutputFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F5801979CCDC0025E559 /* OutputFormat.swift */; };
+		587C3BC274244B9CA9D09B76 /* libPods-caltool.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 88984F8C4A904CF58B8728F7 /* libPods-caltool.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -33,6 +34,9 @@
 		2117F5801979CCDC0025E559 /* OutputFormat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OutputFormat.swift; sourceTree = "<group>"; };
 		21A280641979D6F4004B4E82 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		21A280651979D6F4004B4E82 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		21A2806E197A1C3C004B4E82 /* caltool-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "caltool-Bridging-Header.h"; sourceTree = "<group>"; };
+		88984F8C4A904CF58B8728F7 /* libPods-caltool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-caltool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C82E5AB11E5245F6B90B4F6D /* Pods-caltool.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-caltool.xcconfig"; path = "Pods/Pods-caltool.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				587C3BC274244B9CA9D09B76 /* libPods-caltool.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +56,8 @@
 			children = (
 				2117F5741976213D0025E559 /* caltool */,
 				2117F5731976213D0025E559 /* Products */,
+				C82E5AB11E5245F6B90B4F6D /* Pods-caltool.xcconfig */,
+				DB719B4011F541B59BA44965 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,8 +78,17 @@
 				2117F57E1979CCA90025E559 /* JsonOutput.swift */,
 				2117F5801979CCDC0025E559 /* OutputFormat.swift */,
 				2117F57C197638990025E559 /* EventRetriever.swift */,
+				21A2806E197A1C3C004B4E82 /* caltool-Bridging-Header.h */,
 			);
 			path = caltool;
+			sourceTree = "<group>";
+		};
+		DB719B4011F541B59BA44965 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				88984F8C4A904CF58B8728F7 /* libPods-caltool.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,9 +98,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2117F5791976213D0025E559 /* Build configuration list for PBXNativeTarget "caltool" */;
 			buildPhases = (
+				20D60E26E69A472CA0CACCAC /* Check Pods Manifest.lock */,
 				2117F56E1976213D0025E559 /* Sources */,
 				2117F56F1976213D0025E559 /* Frameworks */,
 				2117F5701976213D0025E559 /* CopyFiles */,
+				47B091CBEC284CBB92EC953D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,6 +143,39 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		20D60E26E69A472CA0CACCAC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		47B091CBEC284CBB92EC953D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-caltool-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2117F56E1976213D0025E559 /* Sources */ = {
@@ -178,6 +229,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "caltool/caltool-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -213,20 +265,25 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "caltool/caltool-Bridging-Header.h";
 			};
 			name = Release;
 		};
 		2117F57A1976213D0025E559 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C82E5AB11E5245F6B90B4F6D /* Pods-caltool.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "caltool/caltool-Bridging-Header.h";
 			};
 			name = Debug;
 		};
 		2117F57B1976213D0025E559 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C82E5AB11E5245F6B90B4F6D /* Pods-caltool.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "caltool/caltool-Bridging-Header.h";
 			};
 			name = Release;
 		};

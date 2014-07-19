@@ -24,23 +24,52 @@ func printError(message : String) {
 }
 var fetching = true
 
-let startDate = NSDate()
-let endDate = NSDate(timeIntervalSinceNow: 14 * 24 * 60 * 60)
-let retriever = EventRetriever()
-let formatter :OutputFormat = JsonOutput()
-retriever.findEvents(startDate: startDate, endDate: endDate) { (events, error) in
-    if let events = events {
-        formatter.printEvents(events, to: NSFileHandle.fileHandleWithStandardOutput())
+var startDate = NSDate()
+var endDate = NSDate()
+var errorMessages = Array<String>()
+
+let parser = JVArgumentParser()
+
+let error = AutoreleasingUnsafePointer<NSError?>()
+let dateDetector = NSDataDetector.dataDetectorWithTypes(NSTextCheckingType.Date.toRaw(), error: error)
+func parseDate(value: String, errorMessage: String) -> NSDate {
+    let range = NSMakeRange(0, (value as NSString).length)
+    let matches = dateDetector.matchesInString(value as NSString, options: nil, range: range)
+    if matches.count == 1 {
+        return matches[0].date
     } else {
-        if let message = error?.localizedDescription? {
-            printError("ERROR: Access to calendar was refused: \(message)");
-        } else {
-            printError("ERROR: Access to calendar was refused.")
-        }
+        errorMessages += (errorMessage + ": " + value)
+        return NSDate()
     }
-    fetching = false
 }
 
-while (fetching) {
-    NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 0.1))
+parser.addOptionWithArgumentWithLongName("from") { value in startDate = parseDate(value, "Invalid from date") }
+parser.addOptionWithArgumentWithLongName("to") { value in endDate = parseDate(value, "Invalid to date") }
+
+parser.parse(NSProcessInfo.processInfo().arguments, error: nil)
+
+if (errorMessages.isEmpty) {
+    let retriever = EventRetriever()
+    let formatter :OutputFormat = JsonOutput()
+    retriever.findEvents(startDate: startDate, endDate: endDate) { (events, error) in
+        if let events = events {
+            formatter.printEvents(events, to: NSFileHandle.fileHandleWithStandardOutput())
+        } else {
+            if let message = error?.localizedDescription? {
+                printError("ERROR: Access to calendar was refused: \(message)");
+            } else {
+                printError("ERROR: Access to calendar was refused.")
+            }
+        }
+        fetching = false
+    }
+
+    while (fetching) {
+        NSRunLoop.currentRunLoop().runUntilDate(NSDate(timeIntervalSinceNow: 0.1))
+    }
+} else {
+    for message in errorMessages {
+        printError(message)
+    }
+    printError("Usage caltool [--from <date>] [--to <date>]")
 }
