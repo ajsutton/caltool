@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		211596B8197A5496005A27D3 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211596B7197A5496005A27D3 /* DateHelper.swift */; };
+		211596BA197A5D05005A27D3 /* TextOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211596B9197A5D05005A27D3 /* TextOutput.swift */; };
 		2117F5761976213D0025E559 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F5751976213D0025E559 /* main.swift */; };
 		2117F57D197638990025E559 /* EventRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F57C197638990025E559 /* EventRetriever.swift */; };
 		2117F57F1979CCA90025E559 /* JsonOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2117F57E1979CCA90025E559 /* JsonOutput.swift */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		211596B7197A5496005A27D3 /* DateHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
+		211596B9197A5D05005A27D3 /* TextOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextOutput.swift; sourceTree = "<group>"; };
 		2117F5721976213D0025E559 /* caltool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = caltool; sourceTree = BUILT_PRODUCTS_DIR; };
 		2117F5751976213D0025E559 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2117F57C197638990025E559 /* EventRetriever.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRetriever.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 			children = (
 				2117F5751976213D0025E559 /* main.swift */,
 				211596B7197A5496005A27D3 /* DateHelper.swift */,
+				211596B9197A5D05005A27D3 /* TextOutput.swift */,
 				21A280641979D6F4004B4E82 /* LICENSE */,
 				21A280651979D6F4004B4E82 /* README.md */,
 				2117F57E1979CCA90025E559 /* JsonOutput.swift */,
@@ -187,6 +190,7 @@
 			files = (
 				211596B8197A5496005A27D3 /* DateHelper.swift in Sources */,
 				2117F5761976213D0025E559 /* main.swift in Sources */,
+				211596BA197A5D05005A27D3 /* TextOutput.swift in Sources */,
 				2117F57D197638990025E559 /* EventRetriever.swift in Sources */,
 				2117F57F1979CCA90025E559 /* JsonOutput.swift in Sources */,
 				2117F5811979CCDC0025E559 /* OutputFormat.swift in Sources */,

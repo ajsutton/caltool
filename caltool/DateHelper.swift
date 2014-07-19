@@ -16,8 +16,21 @@ limitations under the License.
 
 import Foundation
 
-struct DateHelper {
+class DateHelper {
     let calendar = NSCalendar.currentCalendar()
+    
+    let isoDateTimeFormatter = NSDateFormatter()
+    let userDateFormatter = NSDateFormatter()
+    let userDateTimeFormatter = NSDateFormatter()
+    
+    init() {
+        isoDateTimeFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        userDateFormatter.dateStyle = .MediumStyle
+        userDateFormatter.timeStyle = .NoStyle
+        userDateTimeFormatter.dateStyle = .MediumStyle
+        userDateTimeFormatter.timeStyle = .MediumStyle
+    }
+    
     
     var startOfCurrentDay: NSDate {
         get {

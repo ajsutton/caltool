@@ -26,6 +26,7 @@ var fetching = true
 let dateHelper = DateHelper()
 var startDate = dateHelper.startOfCurrentDay
 var endDate = dateHelper.endOfCurrentDay
+var formatter: OutputFormat = TextOutput(dateHelper: dateHelper)
 var errorMessages = Array<String>()
 let parser = JVArgumentParser()
 
@@ -49,6 +50,17 @@ func parseDate(value: String, errorMessage: String) -> NSDate {
 
 parser.addOptionWithArgumentWithLongName("from") { value in startDate = parseDate(value, "Invalid from date") }
 parser.addOptionWithArgumentWithLongName("to") { value in endDate = parseDate(value, "Invalid to date") }
+parser.addOptionWithArgumentWithLongName("format") { value in
+//    let value: String = "FOO"
+    switch value as String {
+    case "json":
+        formatter = JsonOutput()
+    case "text":
+        formatter = TextOutput(dateHelper: dateHelper)
+    default:
+        errorMessages += "Unsupported format \(value)"
+    }
+}
 
 parser.parse(NSProcessInfo.processInfo().arguments, error: &error)
 if let error = error {
@@ -57,7 +69,6 @@ if let error = error {
 
 if (errorMessages.isEmpty) {
     let retriever = EventRetriever()
-    let formatter :OutputFormat = JsonOutput()
     retriever.findEvents(startDate: startDate, endDate: endDate) { (events, error) in
         if let events = events {
             formatter.printEvents(events, to: NSFileHandle.fileHandleWithStandardOutput())
