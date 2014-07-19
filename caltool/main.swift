@@ -30,8 +30,13 @@ var errorMessages = Array<String>()
 
 let parser = JVArgumentParser()
 
-let error = AutoreleasingUnsafePointer<NSError?>()
-let dateDetector = NSDataDetector.dataDetectorWithTypes(NSTextCheckingType.Date.toRaw(), error: error)
+var error : NSError?
+//let error = AutoreleasingUnsafePointer<NSError?>()
+let dateDetector = NSDataDetector.dataDetectorWithTypes(NSTextCheckingType.Date.toRaw(), error: &error)
+if let error = error {
+    printError("Failed to create date parser \(error.localizedDescription)")
+}
+error = nil
 func parseDate(value: String, errorMessage: String) -> NSDate {
     let range = NSMakeRange(0, (value as NSString).length)
     let matches = dateDetector.matchesInString(value as NSString, options: nil, range: range)
@@ -46,7 +51,10 @@ func parseDate(value: String, errorMessage: String) -> NSDate {
 parser.addOptionWithArgumentWithLongName("from") { value in startDate = parseDate(value, "Invalid from date") }
 parser.addOptionWithArgumentWithLongName("to") { value in endDate = parseDate(value, "Invalid to date") }
 
-parser.parse(NSProcessInfo.processInfo().arguments, error: nil)
+parser.parse(NSProcessInfo.processInfo().arguments, error: &error)
+if let error = error {
+    errorMessages += error.localizedDescription!
+}
 
 if (errorMessages.isEmpty) {
     let retriever = EventRetriever()

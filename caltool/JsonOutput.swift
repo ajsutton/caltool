@@ -47,12 +47,12 @@ class JsonOutput: OutputFormat {
     func outputJsonFor(value : AnyObject, to file: NSFileHandle) {
         assert(NSJSONSerialization.isValidJSONObject(value), "Cannot serialise complex values to JSON.")
         let options = NSJSONWritingOptions.PrettyPrinted
-        let error = AutoreleasingUnsafePointer<NSError?>()
-        
-        if let data = NSJSONSerialization.dataWithJSONObject(value, options: options, error: error) {
+        var error: NSError?
+
+        if let data = NSJSONSerialization.dataWithJSONObject(value, options: options, error: &error) {
             file.writeData(data)
-        } else {
-            printError("Failed to serialise calendar to JSON \(error.memory?.localizedDescription?).")
+        } else if let error = error {
+            printError("Failed to serialise calendar to JSON \(error.localizedDescription?).")
         }
     }
 
