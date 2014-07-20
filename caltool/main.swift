@@ -31,7 +31,6 @@ var errorMessages = Array<String>()
 let parser = JVArgumentParser()
 
 var error : NSError?
-//let error = AutoreleasingUnsafePointer<NSError?>()
 let dateDetector = NSDataDetector.dataDetectorWithTypes(NSTextCheckingType.Date.toRaw(), error: &error)
 if let error = error {
     printError("Failed to create date parser \(error.localizedDescription)")
@@ -51,7 +50,6 @@ func parseDate(value: String, errorMessage: String) -> NSDate {
 parser.addOptionWithArgumentWithLongName("from") { value in startDate = parseDate(value, "Invalid from date") }
 parser.addOptionWithArgumentWithLongName("to") { value in endDate = parseDate(value, "Invalid to date") }
 parser.addOptionWithArgumentWithLongName("format") { value in
-//    let value: String = "FOO"
     switch value as String {
     case "json":
         formatter = JsonOutput()
@@ -72,12 +70,10 @@ if (errorMessages.isEmpty) {
     retriever.findEvents(startDate: startDate, endDate: endDate) { (events, error) in
         if let events = events {
             formatter.printEvents(events, to: NSFileHandle.fileHandleWithStandardOutput())
+        } else if let message = error?.localizedDescription? {
+            printError("ERROR: Access to calendar was refused: \(message)");
         } else {
-            if let message = error?.localizedDescription? {
-                printError("ERROR: Access to calendar was refused: \(message)");
-            } else {
-                printError("ERROR: Access to calendar was refused.")
-            }
+            printError("ERROR: Access to calendar was refused.")
         }
         fetching = false
     }
