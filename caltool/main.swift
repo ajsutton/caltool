@@ -85,5 +85,5 @@ if (errorMessages.isEmpty) {
     for message in errorMessages {
         printError(message)
     }
-    printError("Usage caltool [--from <date>] [--to <date>]")
+    printError("Usage caltool [--from <date>] [--to <date>] [--format (text|json)]")
 }
